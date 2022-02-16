@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BooksViewModel
+
+<h1 class="font-weight-bold text-center">Book List</h1>
+
+@*<div class="text-dark">
+        @foreach (Book p in Model.Books)
+        {
+            <h3 class="font-italic">@p.Title</h3>
+
+            <ul class="align-content-center">
+                <li>Author: @p.Author</li>
+                <li>ISBN: @p.Isbn</li>
+                <li>Publisher: @p.Publisher</li>
+                <li>Classification/Category: @p.Classification</li>
+                <li>Number of Pages: @p.PageCount</li>
+                <li>Price: $@p.Price</li>
+            </ul>
+
+            <br />
+        }
+    </div>*@
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold text-center">
+        <tr>
+            <td class="col-3">Title</td>
+            <td class="col-2">Author</td>
+            <td class="col-2">Publisher</td>
+            <td class="col-2">ISBN</td>
+            <td class="col-1">Category</td>
+            <td class="col-1">Pages</td>
+            <td class="col-1">Price</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Book x in Model.Books)
+        {
+            <tr>
+                <td>@x.Title</td>
+                <td>@x.Author</td>
+                <td>@x.Publisher</td>
+                <td>@x.Isbn</td>
+                <td>@x.Category</td>
+                <td class="text-center">@x.PageCount</td>
+                <td class="text-center">$@x.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="btn text-white btn-light btn-secondary" page-num="@Model.PageInfo" page-action="Index"></div>
+
+
