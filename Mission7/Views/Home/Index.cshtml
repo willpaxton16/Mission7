@@ -24,34 +24,12 @@
         }
     </div>*@
 
-<table class="table table-bordered table-striped">
-    <thead class="font-weight-bold text-center">
-        <tr>
-            <td class="col-3">Title</td>
-            <td class="col-2">Author</td>
-            <td class="col-2">Publisher</td>
-            <td class="col-2">ISBN</td>
-            <td class="col-1">Category</td>
-            <td class="col-1">Pages</td>
-            <td class="col-1">Price</td>
-        </tr>
-    </thead>
 
-    <tbody>
-        @foreach (Book x in Model.Books)
-        {
-            <tr>
-                <td>@x.Title</td>
-                <td>@x.Author</td>
-                <td>@x.Publisher</td>
-                <td>@x.Isbn</td>
-                <td>@x.Category</td>
-                <td class="text-center">@x.PageCount</td>
-                <td class="text-center">$@x.Price</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (Book x in Model.Books)
+    {
+        <partial name="BookSummary" model="x" />
+    }
+
 
 
 <div class="btn text-white btn-light btn-secondary" page-num="@Model.PageInfo" page-action="Index"></div>

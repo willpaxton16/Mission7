@@ -19,20 +19,23 @@ namespace Mission7.Controllers
             book = temp;
         }
 
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             int pageSize = 10;
 
             var y = new BooksViewModel
             {
                 Books = book.Books
+                .Where(p => p.Category == category || category == null)
                 .OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    NumProjects = book.Books.Count(),
+                    NumProjects = (category == null 
+                    ? book.Books.Count()
+                    : book.Books.Where(x => x.Category == category).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
